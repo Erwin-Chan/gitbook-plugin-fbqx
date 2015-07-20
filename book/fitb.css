@@ -1,0 +1,36 @@
+.ans {
+	display: inline-block;
+}
+
+.add{
+	color: red;
+	border-bottom: 2px solid red !important; 
+}
+
+.correct{
+	color: green;
+	border-bottom: 2px solid green !important; 
+}
+
+.para {
+	line-height: 200% !important;
+	font-size: small;
+} 
+
+.para > .ans {
+	vertical-align: middle;
+}
+
+.para > .ans > input {
+	height: 25px;
+	border: none;
+	border-bottom: 2px solid grey;
+	background-color: transparent !important;
+	box-shadow: none;
+	width: 100px;
+}
+
+.para > button {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

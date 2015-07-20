@@ -1,0 +1,9 @@
+{
+  "name": "gitbook-plugin-fbq",
+  "description": "Fill in the blank plugin for GitBook",
+  "main": "index.js",
+  "version": "0.0.1",
+  "engines": {
+    "gitbook": ">1.x.x"
+  }
+}
