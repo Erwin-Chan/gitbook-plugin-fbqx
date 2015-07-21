@@ -31,8 +31,6 @@ module.exports = {
                     para = para.replace(str, "<div class='ans'><input type='text' class='form-control input-sm'/></div>");
                 }
 
-                console.log(ans);
-                console.log(qid);
                 return "<blockquote class='para' data-id='"+qid+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm but'>Submit</button></blockquote>";
             }
         }

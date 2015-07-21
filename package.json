@@ -4,6 +4,6 @@
   "main": "index.js",
   "version": "0.0.1",
   "engines": {
-    "gitbook": ">2.x.x"
+    "gitbook": ">=2.x.x"
   }
 }
