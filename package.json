@@ -1,5 +1,5 @@
 {
-  "name": "gitbook-plugin-fbq",
+  "name": "gitbook-plugin-fbqx",
   "description": "Fill-in-the-blank plugin for GitBook",
   "main": "index.js",
   "version": "0.0.1",

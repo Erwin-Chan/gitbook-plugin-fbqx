@@ -5,11 +5,11 @@ module.exports = {
         assets: "./book",
         css: [
             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css",
-            "fitb.css"
+            "fbqx.css"
         ],
         js: [
             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js",
-            "fitb.js",
+            "fbqx.js",
             "js.cookie.js"
         ]
     },
