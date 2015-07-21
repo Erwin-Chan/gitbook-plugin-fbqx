@@ -1,6 +1,6 @@
 (function(){
 
-	var fitb = function() {
+	var init = function() {
 
 		var success = function($this, msg){
 			$this.find('button').addClass('disabled');
@@ -55,7 +55,7 @@
 
 	require(["gitbook"], function(gitbook) {
 	    gitbook.events.bind("page.change", function() {
-	        fitb();
+	        init();
 	    });
 
 	});
