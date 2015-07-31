@@ -46,7 +46,7 @@ module.exports = {
 
                     var ansString = ans.join(',');
 
-                    return "<blockquote>"+ para +"<hr><small>ans: "+ansString+"</small></blockquote>";
+                    return "<blockquote>"+ para +"<br/><small>ans: "+ansString+"</small></blockquote>";
                 }
 			}
 		}
