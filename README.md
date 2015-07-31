@@ -1,4 +1,4 @@
-GitBook Multiple Choice Plugin
+GitBook Fill-in-the-blank Plugin
 ===
 
 ## Demo
