@@ -9,6 +9,7 @@ module.exports = {
         ],
         js: [
             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js",
+            "https://parse.com/downloads/javascript/parse-1.4.2.min.js",
             "fbqx.js",
             "js.cookie.js"
         ]
