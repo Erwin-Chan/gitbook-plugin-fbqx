@@ -1,55 +1,56 @@
-require(["gitbook"], function(gitbook) {
-	gitbook.events.bind("page.change", function() {
-		var success = function($this){
-			$this.find('button').addClass('disabled');
-			$this.append('<br><p class="alert alert-default">Correct.</p>');
-			$this.children('.alert').hide().show('slow');
-		}
+require(["gitbook", "jquery"], function(gitbook, $) {
 
-		$('.FBQbox').each(function(){
-			var qid = $(this).data('id');
+  var init = function(){
 
-			if(Cookies.get(qid)){
-				var answer = $(this).data('answer');
-				$(this).find('input').each(function(i){
-					$(this).val(answer[i]);
-					$(this).prop('readonly', true);
-				});
+    $('.FBQbox').each(function(){
+      var $fbqBox = $(this);
+      var qid = $fbqBox.data('id');
+      var answer = $fbqBox.data('answer');
 
-				success($(this));
-			}
-		});
+      var success = function(){
+        $fbqBox.find('button').addClass('disabled');
+        $fbqBox.append('<br><p class="alert alert-default">Correct.</p>');
+        $fbqBox.children('.alert').hide().show();
+      }
 
-		$('.FBQsubmit').click(function(){
+      if(Cookies.get(qid)){
+        $fbqBox.find('input').each(function(i){
+          $(this).val(answer[i]).prop('readonly', true);
+        });
+        success($fbqBox);
+      }
 
-			var answer = $(this).parent('.FBQbox').data('answer');
-			var allCorrect = true;
+      $fbqBox.find('.FBQsubmit').click(function(){
 
-			$(this).siblings('.ans').each(function(i){
-				var input = $(this).children('input').val();
-				if(answer[i]==input)
-					$(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
-				else {
-					$(this).children('input').addClass('wrong');
-					allCorrect = false;
-				}
-			});
+        var allCorrect = true;
+        var ans = [];
 
-			var qid = $(this).parent('.FBQbox').data('id');
+        $fbqBox.find('.ans').each(function(i){
+          var input = $(this).children('input').val();
+          if(answer[i]==input)
+            $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
+          else {
+            $(this).children('input').addClass('wrong');
+            allCorrect = false;
+          }
+        });
 
-			if(allCorrect){
-				Cookies.set(qid, true, 365);
-				success($(this).parent('.FBQbox'));
-			}
-		});
+        if(allCorrect){
+          Cookies.set(qid, true, 365);
+          success($fbqBox);
+        }
+      });
 
-		$('.ans > input').click(function(){
-			$(this).removeClass('add');
-		});
+      $fbqBox.find('.ans > input').click(function(){
+        $(this).removeClass('wrong');
+      });
 
-		$('.ans > input').keypress(function(){
-			$(this).removeClass('add');
-		});
+      $fbqBox.find('.ans > input').keypress(function(){
+        $(this).removeClass('wrong');
+      });
 
-	});
+    });
+  }
+
+	gitbook.events.bind("page.change", init);
 });

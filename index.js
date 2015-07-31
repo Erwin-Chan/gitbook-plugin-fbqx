@@ -18,36 +18,23 @@ module.exports = {
 	blocks: {
 		fbq: {
 			process: function(blk) {
-                if(this.generator === 'website'){
 
-                    var para = blk.body;
-                    var substr = para.split("$$");
-                    var ans = [];
+				var para = blk.body;
+				var substr = para.split("$$");
+				var ans = [];
 
-                    for(var i = 1; i<substr.length; i++){
-                        ans.push(substr[i].split("##", 1));
-                        var str = '$$' + ans[i-1].toString() + '##';
-                        para = para.replace(str, "<div class='ans'><input type='text' class='form-control input-sm'/></div>");
-                    }
+				for(var i = 1; i<substr.length; i++){
+					ans.push(substr[i].split("##", 1));
+					var str = '$$'+ans[i-1].toString()+'##';
 
-				    return "<blockquote class='FBQbox' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button></blockquote>";
-                } 
-                else {
+					para = (this.generator === 'website')?
+						para.replace(str, "<div class='ans'><input type='text' class='form-control input-sm'/></div>"):
+						para.replace(str, "______");
+				}
 
-                    var para = blk.body;
-                    var substr = para.split("$$");
-                    var ans = [];
-
-                    for(var i = 1; i<substr.length; i++){
-                        ans.push(substr[i].split("##", 1));
-                        var str = '$$' + ans[i-1].toString() + '##';
-                        para = para.replace(str, "______");
-                    }
-
-                    var ansString = ans.join(',');
-
-                    return "<blockquote>"+ para +"<br/><small>ans: "+ansString+"</small></blockquote>";
-                }
+        return (this.generator === 'website')?
+					"<blockquote class='FBQbox' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button></blockquote>":
+					"<blockquote>"+ para +"<br/><small>ans: "+ans.join(',')+"</small></blockquote>";
 			}
 		}
 	}
