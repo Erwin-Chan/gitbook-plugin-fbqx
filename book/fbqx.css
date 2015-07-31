@@ -2,26 +2,26 @@
 	display: inline-block;
 }
 
-.add{
+.wrong{
 	color: red;
-	border-bottom: 2px solid red !important; 
+	border-bottom: 2px solid red !important;
 }
 
 .correct{
 	color: green;
-	border-bottom: 2px solid green !important; 
+	border-bottom: 2px solid green !important;
 }
 
-.para {
+.FBQbox {
 	line-height: 200% !important;
 	font-size: small;
-} 
+}
 
-.para > .ans {
+.FBQbox > .ans {
 	vertical-align: middle;
 }
 
-.para > .ans > input {
+.FBQbox > .ans > input {
 	height: 25px;
 	border: none;
 	border-bottom: 2px solid grey;
@@ -30,7 +30,7 @@
 	width: 100px;
 }
 
-.para > button {
+.FBQbox > .FBQsubmit {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }

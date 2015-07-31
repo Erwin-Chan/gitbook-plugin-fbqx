@@ -1,6 +1,7 @@
+var checksum = require('checksum');
+
 module.exports = {
 
-    // Extend ebook resources and html
     website: {
         assets: "./book",
         css: [
@@ -9,19 +10,15 @@ module.exports = {
         ],
         js: [
             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js",
-            "https://parse.com/downloads/javascript/parse-1.4.2.min.js",
             "fbqx.js",
             "js.cookie.js"
         ]
     },
 
-    // Extend templating blocks
     blocks: {
-        // Author will be able to write "{% myTag %}World{% endMyTag %}"
         fbq: {
             process: function(blk) {
 
-                var qid = blk.kwargs.id;
                 var para = blk.body;
                 var substr = para.split("$$");
                 var ans = [];
@@ -32,7 +29,7 @@ module.exports = {
                     para = para.replace(str, "<div class='ans'><input type='text' class='form-control input-sm'/></div>");
                 }
 
-                return "<blockquote class='para' data-id='"+qid+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm but'>Submit</button></blockquote>";
+                return "<blockquote class='FBQbox' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button></blockquote>";
             }
         }
     }
