@@ -1,20 +1,12 @@
-.ans {
-	display: inline-block;
-}
-
-.wrong{
-	color: red;
-	border-bottom: 2px solid red !important;
-}
-
-.correct{
-	color: green;
-	border-bottom: 2px solid green !important;
-}
-
 .FBQbox {
 	line-height: 200% !important;
 	font-size: small;
+
+	padding: 20px;
+	padding-bottom: 5px;
+	border: 8px solid #F5F5F5;
+	border-radius: 5px;
+	color: black;
 }
 
 .FBQbox > .ans {
@@ -33,4 +25,22 @@
 .FBQbox > .FBQsubmit {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.ans {
+	display: inline-block;
+}
+
+.wrong{
+	color: red;
+	border-bottom: 2px solid red !important;
+}
+
+.correct {
+	color: green;
+	border-bottom: 2px solid green !important;
+}
+
+.display {
+	display: none;
 }

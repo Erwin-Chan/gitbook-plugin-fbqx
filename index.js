@@ -33,8 +33,8 @@ module.exports = {
 				}
 
         return (this.generator === 'website')?
-					"<blockquote class='FBQbox' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button></blockquote>":
-					"<blockquote>"+ para +"<br/><small>ans: "+ans.join(',')+"</small></blockquote>";
+					"<div class='FBQbox' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button><br><p class='alert alert-default FBQmessage'>Correct.</p></div>":
+					"<blockquote>"+ para +"<br/><small>ans: "+ans.join(',')+"</small></div>";
 			}
 		}
 	}

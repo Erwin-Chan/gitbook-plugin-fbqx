@@ -7,17 +7,14 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       var qid = $fbqBox.data('id');
       var answer = $fbqBox.data('answer');
 
-      var success = function(){
-        $fbqBox.find('button').addClass('disabled');
-        $fbqBox.append('<br><p class="alert alert-default">Correct.</p>');
-        $fbqBox.children('.alert').hide().show();
-      }
+      $fbqBox.find('.FBQmessage').removeClass('hidden').hide();
 
       if(Cookies.get(qid)){
         $fbqBox.find('input').each(function(i){
           $(this).val(answer[i]).prop('readonly', true);
         });
-        success($fbqBox);
+        $fbqBox.find('.FBQmessage').text('Correct.').show();
+        $fbqBox.find('button').addClass('disabled').hide();
       }
 
       $fbqBox.find('.FBQsubmit').click(function(){
@@ -37,7 +34,8 @@ require(["gitbook", "jquery"], function(gitbook, $) {
 
         if(allCorrect){
           Cookies.set(qid, true, 365);
-          success($fbqBox);
+          $fbqBox.find('.FBQmessage').text('Correct.').show('slow');
+          $fbqBox.find('button').addClass('disabled');
         }
       });
 
