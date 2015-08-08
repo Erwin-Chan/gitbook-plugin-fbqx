@@ -1,6 +1,20 @@
 require(["gitbook", "jquery"], function(gitbook, $) {
 
   var init = function(){
+
+    // add delete history button ----
+    if(!$('.deleteHistory').length){
+      $('#font-settings-wrapper').after('<a href="#" class="btn pull-left deleteHistory" aria-label="Delete History"><i class="fa fa-history"></i></a>');
+      $('.deleteHistory').click(function(e){
+        $('.gitQuestion').each(function(){ Cookies.remove($(this).data('id')); });
+        $(this).prepend('<p class="historyMessage">History cleared.</p>');
+        $('.historyMessage').hide().fadeIn('slow').delay(2000).fadeOut('slow').delay(1).queue(function(){
+          $(this).remove();
+        });
+      });
+    }
+    // ---------
+
     $('.FBQbox').each(function(){
       var $fbqBox = $(this);
       var qid = $fbqBox.data('id');
