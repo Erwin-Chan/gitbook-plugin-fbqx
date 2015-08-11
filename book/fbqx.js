@@ -1,22 +1,22 @@
 require(["gitbook", "jquery"], function(gitbook, $) {
 
   var init = function(){
+    
+     // add delete history button ----
+     if(!$('.deleteHistory').length){
+       $('#font-settings-wrapper').after('<a href="#" class="btn pull-left deleteHistory" aria-label="Delete History"><i class="fa fa-history"></i></a>');
+       $('.deleteHistory').click(function(e){
+         $('.gitQuestion').each(function(){ Cookies.remove($(this).data('id')); });
+         $(this).prepend('<p class="historyMessage">History cleared.</p>');
+         $('.historyMessage').hide().fadeIn('slow').delay(2000).fadeOut('slow').delay(1).queue(function(){
+           $(this).remove();
+         });
+       });
+     }
+     // ---------
 
-    // add delete history button ----
-    if(!$('.deleteHistory').length){
-      $('#font-settings-wrapper').after('<a href="#" class="btn pull-left deleteHistory" aria-label="Delete History"><i class="fa fa-history"></i></a>');
-      $('.deleteHistory').click(function(e){
-        $('.gitQuestion').each(function(){ Cookies.remove($(this).data('id')); });
-        $(this).prepend('<p class="historyMessage">History cleared.</p>');
-        $('.historyMessage').hide().fadeIn('slow').delay(2000).fadeOut('slow').delay(1).queue(function(){
-          $(this).remove();
-        });
-      });
-    }
-    // ---------
-
-    $('.FBQbox').each(function(){
-      var $fbqBox = $(this);
+    $('.fbqx').each(function(){
+      var $fbqBox = $(this).children('.FBQbox');
       var qid = $fbqBox.data('id');
       var answer = $fbqBox.data('answer');
 
@@ -31,8 +31,8 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       }
 
       $fbqBox.find('.FBQsubmit').click(function(){
-
         var allCorrect = true;
+        var ans = [];
 
         $fbqBox.find('.ans').each(function(i){
           var input = $(this).children('input').val();
@@ -61,8 +61,7 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       });
 
     });
-  };
+  }
 
-	gitbook.events.bind("page.change", init);
-
+  gitbook.events.bind("page.change", init);
 });
