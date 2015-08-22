@@ -8,5 +8,14 @@
   },
   "dependencies": {
     "checksum": "^0.1.1"
+  },
+  "homepage": "https://github.com/Erwin-Chan/gitbook-plugin-fbqx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Erwin-Chan/gitbook-plugin-fbqx.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Erwin-Chan/gitbook-plugin-fbqx/issues"
   }
 }

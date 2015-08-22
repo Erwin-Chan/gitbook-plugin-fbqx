@@ -1,7 +1,7 @@
 require(["gitbook", "jquery"], function(gitbook, $) {
 
   var init = function(){
-    
+
      // add delete history button ----
      if(!$('.deleteHistory').length){
        $('#font-settings-wrapper').after('<a href="#" class="btn pull-left deleteHistory" aria-label="Delete History"><i class="fa fa-history"></i></a>');
@@ -46,7 +46,7 @@ require(["gitbook", "jquery"], function(gitbook, $) {
         });
 
         if(allCorrect){
-          Cookies.set(qid, true, 365);
+          Cookies.set(qid, true, {expires: 365});
           $fbqBox.find('button').addClass('disabled');
           $fbqBox.find('.FBQmessage').show('slow');
         }
