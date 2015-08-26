@@ -9,7 +9,7 @@
     "quiz",
     "blank",
     "interactive"
-  ]
+  ],
   "engines": {
     "gitbook": ">=2.x.x"
   },
