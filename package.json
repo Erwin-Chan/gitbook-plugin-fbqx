@@ -3,6 +3,13 @@
   "description": "Fill-in-the-blank plugin for GitBook",
   "main": "index.js",
   "version": "0.0.1",
+  "keywords":[
+    "fill in the blank",
+    "gitbook",
+    "quiz",
+    "blank",
+    "interactive"
+  ]
   "engines": {
     "gitbook": ">=2.x.x"
   },
