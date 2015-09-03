@@ -19,6 +19,10 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       var $fbqBox = $(this).children('.FBQbox');
       var qid = $fbqBox.data('id');
       var answer = $fbqBox.data('answer');
+      var ansgp = $fbqBox.data('ansgp');
+      var count = $fbqBox.data('count');
+
+      console.log(ansgp[0]);
 
       $fbqBox.find('.FBQmessage').hide();
 
@@ -32,18 +36,44 @@ require(["gitbook", "jquery"], function(gitbook, $) {
 
       $fbqBox.find('.FBQsubmit').click(function(){
         var allCorrect = true;
-        var ans = [];
 
-        $fbqBox.find('.ans').each(function(i){
-          var input = $(this).children('input').val();
+        j=0;
+        $fbqBox.find('.ans').each(function(){
 
-          if(answer[i]==input)
-            $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
-          else {
-            $(this).children('input').addClass('wrong');
-            allCorrect = false;
-          }
-        });
+          var gp = $(this).children('input').attr('name');
+
+          if(gp=='default'){
+              var input = $(this).children('input').val();
+              if(answer[j]==input)
+                $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
+              else {
+                $(this).children('input').addClass('wrong');
+                allCorrect = false;
+              }
+              j++;
+            }
+            else{
+              gp=parseInt(gp, 10);
+              //console.log(gp);
+              //console.log(ansgp[gp]);
+              var input = $(this).children('input').val();
+              var wrong = true;
+              for(var i=0; i<ansgp[gp].length; i++){
+                if(ansgp[gp][i]==input){
+                  $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
+                  ansgp[gp].splice(i, 1);
+                  wrong = false;                  
+                }
+              }
+              if(wrong){
+                $(this).children('input').addClass('wrong');
+                allCorrect = false;
+
+              }
+
+            }
+
+          });
 
         if(allCorrect){
           Cookies.set(qid, true, {expires: 365});
