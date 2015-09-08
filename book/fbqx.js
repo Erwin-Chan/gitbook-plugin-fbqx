@@ -19,10 +19,10 @@ require(["gitbook", "jquery"], function(gitbook, $) {
       var $fbqBox = $(this).children('.FBQbox');
       var qid = $fbqBox.data('id');
       var answer = $fbqBox.data('answer');
-      var ansgp = $fbqBox.data('ansgp');
-      var count = $fbqBox.data('count');
+      //var ansgp = $fbqBox.data('ansgp');
+      //var count = $fbqBox.data('count');
 
-      console.log(ansgp[0]);
+      console.log(answer);
 
       $fbqBox.find('.FBQmessage').hide();
 
@@ -40,6 +40,40 @@ require(["gitbook", "jquery"], function(gitbook, $) {
         j=0;
         $fbqBox.find('.ans').each(function(){
 
+
+          var gp = $(this).children('input').attr('name');
+          var input = $(this).children('input').val();
+
+          if(gp==0){
+              
+              if(answer[0][j]==input)
+                $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
+              else {
+                $(this).children('input').addClass('wrong');
+                allCorrect = false;
+              }
+              j++;
+            }
+            else{
+              //gp=parseInt(gp, 10);
+              //console.log(gp);
+              //console.log(ansgp[gp]);
+              var wrong = true;
+              for(var i=0; i<answer[gp].length; i++){
+                if(answer[gp][i]==input){
+                  $(this).children('input').addClass('correct').removeClass('wrong').prop('readonly', true);
+                  answer[gp].splice(i, 1);
+                  wrong = false;                  
+                }
+              }
+              if(wrong){
+                $(this).children('input').addClass('wrong');
+                allCorrect = false;
+
+              }
+
+            }
+/*
           var gp = $(this).children('input').attr('name');
 
           if(gp=='default'){
@@ -72,7 +106,7 @@ require(["gitbook", "jquery"], function(gitbook, $) {
               }
 
             }
-
+*/
           });
 
         if(allCorrect){

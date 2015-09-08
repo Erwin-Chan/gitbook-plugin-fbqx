@@ -20,8 +20,32 @@ module.exports = {
 			process: function(blk) {
 
 				var para = blk.body.trim();
-				var substr = para.split("$$");
-				var ans = [];
+				var reInput = /\$\$.*?##/ig; 	//$$(anything)##
+				var reGp = /\(gp([0-9]*)\)/i; 	//(gp(number))
+				var getStr = /\$\$(.*?)##/;
+				var answer = {
+								0:[] //0: defualt
+							};
+				var index = 0;
+				var arr_input = para.match(reInput);
+
+				for(var i=0; i<arr_input.length; i++){
+					if(reGp.test(arr_input[i])){
+						index = arr_input[i].match(reGp)[1];  //get the string inside (gp and )
+						if(answer[index] == undefined)
+							answer[index] = [];
+						answer[index].push(arr_input[i].replace(reGp, '').match(getStr)[1]);
+					}
+					else{
+						index = 0;
+						answer[0].push(arr_input[i].match(getStr)[1]);
+					}
+					para = (this.generator === 'website')?
+						para = para.replace(arr_input[i], "<div class='ans'><input type='text' name='"+ index +"' class='form-control input-sm'/></div>"):
+						para.replace(str, "______");
+				}
+
+/*				var ans = [];
 				//var ansGp = [];
 				var count = 1;
 				var ansgp = {}
@@ -59,9 +83,10 @@ module.exports = {
 					}
 
 				}
+*/
 
         return (this.generator === 'website')?
-				"<div class='fbqx'><div class='FBQbox gitQuestion' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(ans)+ "' data-ansgp='" + JSON.stringify(ansgp)+ "' data-count='"+ count +"'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button><br><p class='alert alert-default FBQmessage'>Correct.</p></div></div>":
+				"<div class='fbqx'><div class='FBQbox gitQuestion' data-id='"+checksum(blk.body)+"' data-answer='" + JSON.stringify(answer) + "'>" + para + "<br><button class='btn btn-default btn-sm FBQsubmit'>Submit</button><br><p class='alert alert-default FBQmessage'>Correct.</p></div></div>":
 				"<blockquote>"+ para +"<br/><small>ans: "+ans.join(',')+"</small></blockquote>";
 			}
 		}
