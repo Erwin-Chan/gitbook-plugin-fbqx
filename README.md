@@ -7,8 +7,7 @@ See the plugin at work here: [Click Here](http://ymcatar.gitbooks.io/gitbook-tes
 
 ## Changelog
 
-* 0.0 releases:
-	* 0.0.1: Initial release.
+* **0.1.0:** Fixed clear history button.
 
 ## Basic syntax
 
