@@ -20,7 +20,7 @@ Testing the plugin, enter the word "hello" into the field ______, "world" into _
 The syntax for the question would be:
 
 ```
-Testing the plugin, enter the word "hello" into the field $$hello$$, "world" into $$world##.
+Testing the plugin, enter the word "hello" into the field $$hello##, "world" into $$world##.
 ```
 
 Note that the whitespaces before or after the phrase enclosed within ```$$``` and ```##``` will not be ignored, so please take extra cares to them. Also, due to the syntax of the plugin, you cannot include ```$$``` and ```##``` as a part of the answer.
