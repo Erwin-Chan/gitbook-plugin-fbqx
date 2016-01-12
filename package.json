@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-fbqx",
   "description": "Fill-in-the-blank plugin for GitBook",
   "main": "index.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords":[
     "fill in the blank",
     "gitbook",
