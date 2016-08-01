@@ -9,6 +9,10 @@
 	color: black;
 }
 
+.FBQbox *:not(.FBQmessage) {
+	display: inline-block;
+}
+
 .FBQbox > .ans {
 	vertical-align: middle;
 }
